@@ -1,0 +1,35 @@
+<div class="box box-solid">
+    <div class="box-header">
+        <h3 class="box-title">Contoh form </h3>
+    </div>
+    <div class="box-body">
+        {{ html.beginForm() | raw}}
+        {{ html.errorSummary(model) | raw}}
+        <div class="col-lg-6">
+            <div class="form-group">
+                {{ html.activeLabel(model, 'name', {'class': 'control-label'}) | raw}}
+                {{ html.activeTextInput(model, 'name', {'class': 'form-control'}) | raw}}
+            </div>
+            <div class="form-group">
+                {{ html.activeLabel(model, 'email', {'class': 'control-label'}) | raw}}
+                {{ html.activeTextInput(model, 'email', {'class': 'form-control'}) | raw}}
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group">
+                {{ html.activeLabel(model, 'phone', {'class': 'control-label'}) | raw}}
+                {{ html.activeTextInput(model, 'phone', {'class': 'form-control'}) | raw}}
+            </div>
+            <div class="form-group">
+                {{ html.activeLabel(model, 'keterangan', {'class': 'control-label'}) | raw}}
+                {{ html.activeTextInput(model, 'keterangan', {'class': 'form-control'}) | raw}}
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                {{ html.submitButton('Save', {'class':'btn btn-primary'}) | raw}}
+            </div>
+        </div>
+        {{ html.endForm() | raw}}
+    </div>
+</div>
