@@ -8,6 +8,5 @@ use yii\web\View;
 <section class="content">
     <?= $content ?>
 </section>
-
 <?php
 $this->endContent();

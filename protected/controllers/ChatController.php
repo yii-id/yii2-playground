@@ -106,7 +106,7 @@ class ChatController extends Controller
                 sleep(1);
             }
         } catch (\Exception $exc) {
-            $sse->event('error', ['msg' => $exc->getMessage()]);
+            $sse->event('msgerror', ['msg' => $exc->getMessage()]);
             $sse->flush();
         }
         $sse->id($lastTime);

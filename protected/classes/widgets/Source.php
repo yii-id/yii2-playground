@@ -8,6 +8,7 @@ use yii\helpers\Markdown;
 use yii\helpers\Inflector;
 use app\assets\SourceAsset;
 use yii\bootstrap\Html;
+use yii\caching\FileDependency;
 
 /**
  * Description of Source
@@ -148,7 +149,7 @@ CODE;
         }
 
         $content = [];
-        if(isset($config['sourceText'])){
+        if (isset($config['sourceText'])) {
             $content[] = $config['sourceText'];
         }
         foreach ($config['sources'] as $i => $block) {
@@ -157,7 +158,8 @@ CODE;
 
         $content = Markdown::process(implode("\n", $content), 'mdm');
         if ($cache) {
-            $cache->set($cacheKey, $content);
+            $dependency = new FileDependency(['fileName' => $config['file']]);
+            $cache->set($cacheKey, $content, 0, $dependency);
         }
         return $content;
     }

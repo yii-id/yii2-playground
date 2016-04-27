@@ -34,7 +34,7 @@ sse.addEventListener('unread', function (e) {
     }
 });
 
-sse.addEventListener('error', function (e) {
+sse.addEventListener('msgerror', function (e) {
     var data = JSON.parse(e.data);
     console.log(data.msg);
 });

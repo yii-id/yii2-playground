@@ -5,6 +5,7 @@ use app\assets\AdminLteAsset;
 use app\classes\widgets\SideNav;
 use app\classes\widgets\Route;
 use app\classes\widgets\SelectThemeCode;
+use app\classes\widgets\Disqus;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -61,17 +62,24 @@ AdminLteAsset::register($this);
                 </section>
             </aside>
             <div class="content-wrapper">
-<?= $content; ?>
+                <?= $content; ?>
+                <section class="content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <?= Disqus::widget() ?>
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
                     Version 2.0
                 </div>
-                <strong>Copyright &copy; 2015 <a href="#">Deesoft</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; <?= date('Y') ?> <a href="#">Deesoft</a>.</strong> All rights reserved.
             </footer>
         </div>
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

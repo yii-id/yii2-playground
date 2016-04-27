@@ -3,7 +3,7 @@
 namespace app\classes\widgets;
 
 use Yii;
-use yii\helpers\Inflector;
+use yii\helpers\Url;
 use yii\caching\FileDependency;
 
 /**
@@ -63,10 +63,8 @@ class Route
                     return;
                 }
             }
-            Yii::trace("Route '{$route}' not match");
-        } else {
-            Yii::trace("Route '{$route}' not found");
         }
+        Yii::trace("Route '{$route}' not found");
     }
 
     protected static function init()
@@ -94,12 +92,11 @@ class Route
     {
         $result = [];
         foreach ($items as $label => $item) {
-            $name = $prefix . Inflector::slug($label);
             if (is_array($item) && !isset($item['url'])) {
                 $result[] = [
                     'label' => $label,
-                    'name' => $name,
-                    'items' => static::resolveRecursive($item, $name . '/'),
+                    'name' => md5($prefix . $label),
+                    'items' => static::resolveRecursive($item, $prefix . $label . '/'),
                 ];
             } else {
                 if (is_string($item)) {
@@ -109,9 +106,13 @@ class Route
                         $file = static::$basePath . '/' . ltrim($item, '/');
                     }
                     $item = static::requireFile($file);
+                } else {
+                    $file = static::$configFile;
                 }
-
-                $result[] = static::resolveItem($item, $name, $label);
+                if (!isset($item['file'])) {
+                    $item['file'] = $file;
+                }
+                $result[] = static::resolveItem($item, $label);
             }
         }
         return $result;
@@ -125,11 +126,12 @@ class Route
         return require $_file_;
     }
 
-    protected static function resolveItem($item, $name, $label)
+    protected static function resolveItem($item, $label)
     {
-        $item['name'] = $name;
         $url = $item['url'];
         $url[0] = '/' . ltrim($url[0], '/');
+        $item['name'] = $name = md5(serialize($url));
+        $item['canonical'] = Url::to($url, true);
 
         if (!isset($item['label'])) {
             $item['label'] = $label;

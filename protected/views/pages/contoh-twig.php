@@ -6,18 +6,25 @@ use app\models\ContactInfo;
 /* @var $this View */
 ?>
 <?php
-$model = new ContactInfo();
-if($model->load(Yii::$app->getRequest()->post()) && $model->save()){
-    // kalau sudah tersimpan, persiapkan model baru
+$id = Yii::$app->getRequest()->get('id');
+if ($id) {
+    $model = ContactInfo::findOne($id);
+}
+if (!isset($model)) {
     $model = new ContactInfo();
+}
+if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
+    // kalau sudah tersimpan, redirect
+    Yii::$app->getResponse()->redirect(['site/page', 'view' => 'contoh-twig']);
+    return;
 }
 
 // list data terakhir
-$contacts = ContactInfo::find()->orderBy(['id'=>SORT_DESC])->limit(10)->all();
+$contacts = ContactInfo::find()->orderBy(['id' => SORT_DESC])->limit(10)->all();
 echo $this->render('twig/index.twig', ['contacts' => $contacts]);
 
 // view data terakhir
-$contact = ContactInfo::find()->one();
+$contact = ContactInfo::find()->orderBy(['id' => SORT_DESC])->one();
 echo $this->render('twig/view.twig', ['contact' => $contact]);
 
 // form

@@ -28,6 +28,8 @@
         <div class="col-lg-12">
             <div class="form-group">
                 {{ html.submitButton('Save', {'class':'btn btn-primary'}) | raw}}
+                <a href="{{ url('site/page',{'view':'contoh-twig'}) }}" 
+                   class="btn btn-success">Cancel</a>
             </div>
         </div>
         {{ html.endForm() | raw}}

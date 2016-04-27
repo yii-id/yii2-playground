@@ -19,14 +19,23 @@ if (empty($this->title)) {
 </section>
 <section class="content">
     <div class="box box-default box-solid">
-        <div class="box-header"><h3 class="box-title">Output</h3></div>
+        <div class="box-header"><h3 class="box-title">Output</h3>
+            <div class="box-tools pull-right">
+                <a href="#disqus_thread" class="btn btn-box-tool"><i class="fa fa-comments-o"></i></a>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i></button>
+            </div>
+        </div>
         <div class="box-body">
             <?= $content ?>
         </div>
     </div>
     <div class="box box-default box-solid">
         <div class="box-header"><h3 class="box-title">Source</h3>
-            <div class="box-tools"></div>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i></button>
+            </div>
         </div>
         <div class="box-body">
             <?= Source::widget() ?>

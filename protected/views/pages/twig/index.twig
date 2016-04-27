@@ -10,6 +10,7 @@
                     <th>Email</th>
                     <th>Telpon</th>
                     <th>Keterangan</th>
+                    <th>#</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,6 +20,8 @@
                         <td>{{ contact.email }}</td>
                         <td>{{ contact.phone }}</td>
                         <td>{{ contact.keterangan }}</td>
+                        <td><a href="{{ url('site/page',{'view':'contoh-twig', 'id':contact.id}) }}">
+                                <span class="glyphicon glyphicon-eye-open"></span></a></td>
                     </tr>
                 {% endfor %}
             </tbody>
