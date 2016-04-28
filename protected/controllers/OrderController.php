@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
  */
 class OrderController extends Controller
 {
-
+    public $layout = 'playground';
     public function behaviors()
     {
         return [

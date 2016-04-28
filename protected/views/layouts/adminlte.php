@@ -39,12 +39,12 @@ AdminLteAsset::register($this);
         </style>
     </head>
     <?php $this->beginBody() ?>
-    <body class="skin-blue sidebar-mini">
+    <body class="skin-red sidebar-mini">
         <div class="wrapper">
             <?= $this->render('header'); ?>
             <aside class="main-sidebar">
                 <section class="sidebar">
-                    <div class="input-group">
+                    <div class="sidebar-form">
                         <?=
                         SelectThemeCode::widget([
                             'options' => ['class' => 'form-control']

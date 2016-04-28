@@ -12,4 +12,7 @@ return[
         'Markdown' => 'pages/markdown-editor.php',
         'Twig' => 'pages/contoh-twig.php',
     ],
+    'CRUD' => [
+        'Header Detail' => 'crud/order.php',
+    ]
 ];

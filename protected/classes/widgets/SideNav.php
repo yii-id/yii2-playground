@@ -151,7 +151,7 @@ class SideNav extends Widget
             }
             $lines[] = $this->renderItem($item);
         }
-        
+
         return Html::tag('ul', implode("\n", $lines), $options);
     }
 
@@ -174,8 +174,9 @@ class SideNav extends Widget
         if ($encodeLabel) {
             $label = Html::encode($label);
         }
+        $label = "<span>$label</span>";
 
-        $icon = ArrayHelper::getValue($item, 'icon');
+        $icon = ArrayHelper::getValue($item, 'icon', empty($item['items']) ? 'check' : 'th');
         if ($icon) {
             $label = FA::icon($icon) . ' ' . $label;
         }

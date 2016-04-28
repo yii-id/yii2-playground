@@ -35,7 +35,7 @@ class Source extends Widget
         }
         $appPath = Yii::getAlias('@app');
         $this->appPath = $appPath . '/';
-        $this->rootPath = dirname($appPath) . '/';
+        $this->rootPath = Yii::getAlias('@root') . '/';
         $this->vendorPath = Yii::getAlias('@vendor') . '/';
     }
 
@@ -67,8 +67,9 @@ class Source extends Widget
                 $ref = new \ReflectionClass($source);
                 $name = $source;
             } else {
-                $method = explode('::', $source);
-                $ref = new \ReflectionMethod($method[0], $method[1]);
+                $source = rtrim($source, '()');
+                $part = explode('::', $source);
+                $ref = new \ReflectionMethod($part[0], $part[1]);
                 $name = $source . '()';
             }
             $source = $ref->getFileName();
