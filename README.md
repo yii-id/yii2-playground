@@ -1,5 +1,5 @@
 Yii 2 Playground
-===============================
+=================
 
 Ini adalah aplikasi Yii2 playgroud. Aplikasi ini berisi demo-demo bagaimana menggunakan fitur dari Yii2.
 Repo ini didesain semudah mungkin agar siapapun dapat berkontribusi dalam pengembangan aplikasi ini.
@@ -28,5 +28,9 @@ INSTALLATION
 ------------
 
 ```
-composer create-project yii-id/yii2-playground playground --prefer-dist
+$ git clone https://github.com/yii-id/yii2-playground.git playground
+$ cd playground
+$ composer install --prefer-dist
+$ php init
+$ php yii migrate
 ```

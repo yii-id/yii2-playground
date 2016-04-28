@@ -1,6 +1,12 @@
 <?php
-/* @var $this yii\web\View */
+use yii\web\View;
+use yii\helpers\Markdown;
+use app\assets\SourceAsset;
+
+/* @var $this View */
+SourceAsset::register($this);
 $this->title = 'Yii2 Playground';
+$contribusi = file_get_contents(Yii::getAlias('@root/docs/cara-kontribusi.md'));
 ?>
 <div class="site-index">
 
@@ -13,11 +19,7 @@ $this->title = 'Yii2 Playground';
         <div class="row">
             <div class="col-lg-12">
                 <h2>Playground</h2>
-                <p>Contoh aplikasi yang dibuat dengan Yii2.
-                    Untuk berkontribusi dalam playground ini, silakan fork repo <a href="https://github.com/yii-id/yii2-playground">gitbub</a>
-                    kemudian submit <code>Pull Request</code>
-                </p>
-
+                <?= Markdown::process($contribusi, 'mdm') ?>
                 <p><a class="btn btn-default" href="https://github.com/yii-id/yii2-playground">Fork Github &raquo;</a></p>
             </div>
         </div>

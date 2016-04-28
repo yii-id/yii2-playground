@@ -1,5 +1,6 @@
 <?php
-\yii\helpers\Markdown::$flavors['mdm'] = [
+Yii::setAlias('@root', dirname(dirname(__DIR__)));
+yii\helpers\Markdown::$flavors['mdm'] = [
     'class' => 'app\classes\ApiMarkdown',
     'html5' => true
 ];

@@ -33,7 +33,6 @@ class Disqus extends Widget
             $url = Url::canonical();
         }
 
-
         $opts = json_encode([
             'url' => $url,
             'identifier' => $identifier,
@@ -59,6 +58,9 @@ JS;
 
     public function run()
     {
+        if (empty(Yii::$app->params['disqus.name'])) {
+            return '';
+        }
         $this->registerScript();
         echo '<div id="disqus_thread"></div>';
     }

@@ -8,4 +8,5 @@ return [
 //        'assignmentTable' => '{{%auth_assignment}}',
 //        'ruleTable' => '{{%auth_rule}}',
     ],
+    'disqus.name' => '',
 ];
