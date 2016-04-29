@@ -10,8 +10,8 @@ function skinAdmin(opts) {
     });
 
     $($.AdminLTE.options.sidebarToggleSelector).click(function () {
-        $.post(opts.changeCollapseUrl, {style: opts.collapse ? 0 : 1});
-        opts.collapse = !opts.collapse;
+        opts.collapse = opts.collapse == 'yes' ? 'no' : 'yes';
+        $.post(opts.changeCollapseUrl, {style: opts.collapse});
     });
 }
 

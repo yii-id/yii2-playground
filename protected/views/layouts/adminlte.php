@@ -12,9 +12,9 @@ use yii\helpers\Url;
 /* @var $content string */
 
 AdminLteAsset::register($this);
-
-$skins = ['lightBlue', 'red', 'green', 'aqua', 'yellow', 'blue', 'navy', 'teal', 'olive',
-    'lime', 'orange', 'fuchsia', 'purple', 'maroon', 'black', 'gray'];
+$skins = ['black', 'blue', 'green', 'purple', 'red', 'yellow',
+    'black-light', 'blue-light', 'green-light', 'purple-light', 'red-light', 'yellow-light',
+];
 $skin = Yii::$app->profile->skin ? : 'red';
 $collapse = Yii::$app->profile->collapse;
 $opts = json_encode([
@@ -25,7 +25,7 @@ $opts = json_encode([
     ]);
 $this->registerJs($this->render('adminlte.js'));
 $this->registerJs("skinAdmin({$opts});");
-$collapse = $collapse ? 'sidebar-collapse' : '';
+$collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -50,6 +50,9 @@ $collapse = $collapse ? 'sidebar-collapse' : '';
                 float: right;
                 color: gray;
                 font-size: 0.8em;
+            }
+            span.emoji > img{
+                height: 24px;
             }
         </style>
     </head>
