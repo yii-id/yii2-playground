@@ -6,11 +6,26 @@ use app\classes\widgets\SideNav;
 use app\classes\widgets\Route;
 use app\classes\widgets\SelectThemeCode;
 use app\classes\widgets\Disqus;
+use yii\helpers\Url;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
 AdminLteAsset::register($this);
+
+$skins = ['lightBlue', 'red', 'green', 'aqua', 'yellow', 'blue', 'navy', 'teal', 'olive',
+    'lime', 'orange', 'fuchsia', 'purple', 'maroon', 'black', 'gray'];
+$skin = Yii::$app->profile->skin ? : 'red';
+$collapse = Yii::$app->profile->collapse;
+$opts = json_encode([
+    'changeSkinUrl' => Url::to(['/site/change-theme', 'for' => 'skin']),
+    'changeCollapseUrl' => Url::to(['/site/change-theme', 'for' => 'collapse']),
+    'skin' => 'skin-' . $skin,
+    'collapse' => $collapse,
+    ]);
+$this->registerJs($this->render('adminlte.js'));
+$this->registerJs("skinAdmin({$opts});");
+$collapse = $collapse ? 'sidebar-collapse' : '';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -39,12 +54,17 @@ AdminLteAsset::register($this);
         </style>
     </head>
     <?php $this->beginBody() ?>
-    <body class="skin-red sidebar-mini">
+    <body class="skin-<?= $skin ?> sidebar-mini <?= $collapse; ?>">
         <div class="wrapper">
             <?= $this->render('header'); ?>
             <aside class="main-sidebar">
                 <section class="sidebar">
                     <div class="sidebar-form">
+                        <?=
+                        Html::dropDownList('', $skin, array_combine($skins, $skins), [
+                            'id' => 'select-skin', 'class' => 'form-control'
+                        ]);
+                        ?>
                         <?=
                         SelectThemeCode::widget([
                             'options' => ['class' => 'form-control']

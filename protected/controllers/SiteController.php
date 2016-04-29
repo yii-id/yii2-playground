@@ -80,9 +80,7 @@ class SiteController extends Controller
     {
         Yii::$app->getResponse()->format = 'json';
         $style = \Yii::$app->getRequest()->post('style', '');
-        if ($style) {
-            Yii::$app->profile->set($for, $style);
-        }
+        Yii::$app->profile->set($for, $style);
         return $style;
     }
 }
