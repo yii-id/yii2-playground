@@ -1,6 +1,8 @@
-var sse = new EventSource(chatOpts.messageUrl);
+$('#inp-chat').focus();
+var sse;
 var $container = $('#message-container');
 
+sse = new EventSource(chatOpts.messageUrl);
 sse.addEventListener('chat', function (e) {
     var data = JSON.parse(e.data);
     var msgs = data.msgs;
@@ -68,9 +70,9 @@ $('#inp-chat').on('click focus', function () {
 });
 
 $('#btn-name').click(function () {
-    $.post(chatOpts.setNameUrl,{
-        name:$('#inp-name').val()
-    },function(r){
+    $.post(chatOpts.setNameUrl, {
+        name: $('#inp-name').val()
+    }, function (r) {
         $('#inp-name').val(r);
     });
 });

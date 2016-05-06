@@ -49,7 +49,7 @@ class ChatController extends Controller
         return Yii::$app->profile->name;
     }
 
-    public function actionMessage()
+    public function actionMessage($notifOnly = false)
     {
         $MAX_CONN = 15; // 15 times
         $sse = new SSE();
@@ -81,27 +81,29 @@ class ChatController extends Controller
                 }
 
                 // load message
-                $rows = $chats->params([':ctime' => $lastTime])->all();
-                $lastTime = microtime(true);
-                $msgs = [];
-                foreach (array_reverse($rows) as $row) {
-                    $self = $row['user_id'] == $user_id;
+                if (!$notifOnly) {
+                    $rows = $chats->params([':ctime' => $lastTime])->all();
+                    $lastTime = microtime(true);
+                    $msgs = [];
+                    foreach (array_reverse($rows) as $row) {
+                        $self = $row['user_id'] == $user_id;
 
-                    if ($row['time'] < ($lastTime - 86400)) { // lebih dari sehari
-                        $formatTime = date('d M H:i', $row['time']);
-                    } else {
-                        $formatTime = date('H:i:s', $row['time']);
+                        if ($row['time'] < ($lastTime - 86400)) { // lebih dari sehari
+                            $formatTime = date('d M H:i', $row['time']);
+                        } else {
+                            $formatTime = date('H:i:s', $row['time']);
+                        }
+                        $msgs[] = [
+                            'self' => $self,
+                            'time' => $formatTime,
+                            'name' => $self ? 'Me' : "{$row['username']}({$row['user_id']})",
+                            'text' => $row['text']
+                        ];
                     }
-                    $msgs[] = [
-                        'self' => $self,
-                        'time' => $formatTime,
-                        'name' => $self ? 'Me' : "{$row['username']}({$row['user_id']})",
-                        'text' => $row['text']
-                    ];
-                }
-                if (count($msgs) || ($i % 4 == 2)) {
-                    $sse->event('chat', ['msgs' => $msgs]);
-                    $sse->flush();
+                    if (count($msgs) || ($i % 4 == 2)) {
+                        $sse->event('chat', ['msgs' => $msgs]);
+                        $sse->flush();
+                    }
                 }
                 sleep(1);
             }

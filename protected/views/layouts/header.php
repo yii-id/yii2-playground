@@ -1,6 +1,7 @@
 <?php
 
 use yii\web\View;
+use yii\helpers\Url;
 
 /* @var $this View */
 ?>
@@ -20,7 +21,13 @@ use yii\web\View;
         </a>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">                
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="<?= Url::to(['/chat/index']) ?>" aria-expanded="false">
+                        <i class="fa fa-envelope-o"></i>
+                        <span data-toggle="tooltip" title=""  class="label label-success" id="msg-notif"></span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>

@@ -23,6 +23,8 @@ $opts = json_encode([
     'skin' => 'skin-' . $skin,
     'collapse' => $collapse,
     ]);
+
+$this->registerJs('var chatUrl = ' . json_encode(Url::to(['/chat/message', 'notifOnly' => 1])) . ';');
 $this->registerJs($this->render('adminlte.js'));
 $this->registerJs("skinAdmin({$opts});");
 $collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';

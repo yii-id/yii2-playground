@@ -23,9 +23,6 @@ list(, $mainUrl) = Yii::$app->getAssetManager()->publish('@app/assets/main');
     <div class="box box-primary direct-chat direct-chat-primary">
         <div class="box-header with-border">
             <h3 class="box-title">Simple Chat</h3>
-            <div class="box-tools pull-right">
-                <span data-toggle="tooltip" title="" class="badge bg-red" id="msg-notif"></span>
-            </div>
         </div>
         <div class="box-body">
             <div class="direct-chat-messages" id="message-container">

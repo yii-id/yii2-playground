@@ -15,3 +15,17 @@ function skinAdmin(opts) {
     });
 }
 
+if(typeof sse == 'undefined'){
+    var sse = new EventSource(chatUrl);
+    
+    sse.addEventListener('unread', function (e) {
+    var data = JSON.parse(e.data);
+    if (data.count > 0) {
+        $('#msg-notif').text(data.count);
+        $('#msg-notif').attr('title', data.count + ' pesan baru');
+    } else {
+        $('#msg-notif').text('');
+        $('#msg-notif').attr('title', '');
+    }
+});
+}
