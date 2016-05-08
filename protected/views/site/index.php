@@ -19,7 +19,7 @@ $contribusi = file_get_contents(Yii::getAlias('@root/docs/cara-kontribusi.md'));
         <div class="row">
             <div class="col-lg-12">
                 <h2>Playground</h2>
-                <?= Markdown::process($contribusi, 'mdm') ?>
+                <?= Markdown::process($contribusi) ?>
                 <p><a class="btn btn-default" href="https://github.com/yii-id/yii2-playground">Fork Github &raquo;</a></p>
             </div>
         </div>

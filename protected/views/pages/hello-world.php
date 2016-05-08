@@ -26,4 +26,4 @@ $('#btn').click(function(){
 });
 ```";
 
-echo Markdown::process($text, 'mdm');
+echo Markdown::process($text);

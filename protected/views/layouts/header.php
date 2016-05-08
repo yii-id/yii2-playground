@@ -8,7 +8,8 @@ use yii\helpers\Url;
 <header class="main-header">
     <a href="<?= Yii::$app->homeUrl ?>" class="logo">
         <!-- LOGO -->
-        Yii2 Playground
+        <span class="logo-mini"><b>Yii</b>2</span>
+        <span class="logo-lg">Yii2 Playground</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top" role="navigation">

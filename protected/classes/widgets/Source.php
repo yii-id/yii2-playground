@@ -157,7 +157,7 @@ CODE;
             $content[] = $this->renderCode($i, $block);
         }
 
-        $content = Markdown::process(implode("\n", $content), 'mdm');
+        $content = Markdown::process(implode("\n", $content));
         if ($cache) {
             $dependency = new FileDependency(['fileName' => $config['file']]);
             $cache->set($cacheKey, $content, 0, $dependency);

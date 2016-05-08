@@ -17,7 +17,7 @@ if ($request->getIsAjax()) {
     if (strlen($text) > 3426) { // inputnya jangan panjang-panjang. kasihan servernya :D
         $text = substr($text, 0, 3426);
     }
-    $text = HtmlPurifier::process(Markdown::process($text, 'mdm'));
+    $text = HtmlPurifier::process(Markdown::process($text));
     if ($request->post('action') == 'save') { // simpan ke cache
         array_unshift($data, $text); // taruh data baru sebagai yg pertama
         $data = array_slice($data, 0, 5); // ambil hanya 5 data terakhir

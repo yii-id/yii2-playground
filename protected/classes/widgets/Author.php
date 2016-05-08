@@ -4,7 +4,7 @@ namespace app\classes\widgets;
 
 use Yii;
 use yii\base\Widget;
-use yii\helpers\Html;
+use yii\helpers\Markdown;
 
 /**
  * Description of Author
@@ -24,9 +24,13 @@ class Author extends Widget
         if (empty($config)) {
             return;
         }
-        
-        $author = empty($config['author']) ? '' : Html::tag('h1', 'Oleh: ' . Html::encode($config['author']));
-        $description = empty($config['text']) ? '' : Html::tag('small', Html::encode($config['text']));
-        return $author . $description;
+        $lines = '';
+        if (!empty($config['author'])) {
+            $lines .= '## ' . $config['author'] . "\n";
+        }
+        if (!empty($config['text'])) {
+            $lines .= $config['text'];
+        }
+        return Markdown::process($lines);
     }
 }

@@ -28,6 +28,8 @@ $this->registerJs('var chatUrl = ' . json_encode(Url::to(['/chat/message', 'noti
 $this->registerJs($this->render('adminlte.js'));
 $this->registerJs("skinAdmin({$opts});");
 $collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';
+
+list(, $mainUrl) = $this->assetManager->publish('@app/assets/main');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -64,6 +66,14 @@ $collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';
             <?= $this->render('header'); ?>
             <aside class="main-sidebar">
                 <section class="sidebar">
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="<?= $mainUrl ?>/img/Yii2.png" class="img-circle" alt="Yii Logo">
+                        </div>
+                        <div class="pull-left info">
+                            <p>Yii2 Framework</p>
+                        </div>
+                    </div>
                     <div class="sidebar-form">
                         <?=
                         Html::dropDownList('', $skin, array_combine($skins, $skins), [
