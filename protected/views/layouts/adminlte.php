@@ -30,6 +30,8 @@ $this->registerJs("skinAdmin({$opts});");
 $collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';
 
 list(, $mainUrl) = $this->assetManager->publish('@app/assets/main');
+$this->registerMetaTag(['property' => 'og:image', 'content' => $mainUrl . '/img/Yii2.png']);
+$this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -66,14 +68,6 @@ list(, $mainUrl) = $this->assetManager->publish('@app/assets/main');
             <?= $this->render('header'); ?>
             <aside class="main-sidebar">
                 <section class="sidebar">
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="<?= $mainUrl ?>/img/Yii2.png" class="img-circle" alt="Yii Logo">
-                        </div>
-                        <div class="pull-left info">
-                            <p>Yii2 Framework</p>
-                        </div>
-                    </div>
                     <div class="sidebar-form">
                         <?=
                         Html::dropDownList('', $skin, array_combine($skins, $skins), [
