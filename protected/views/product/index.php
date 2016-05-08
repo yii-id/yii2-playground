@@ -9,7 +9,7 @@ use yii\helpers\ArrayHelper;
 /* @var $searchModel app\models\search\Product */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Products';
+$this->title = 'Contoh Export';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="product-index">

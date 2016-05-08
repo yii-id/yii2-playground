@@ -32,6 +32,7 @@ $collapse = $collapse == 'yes' ? 'sidebar-collapse' : '';
 list(, $mainUrl) = $this->assetManager->publish('@app/assets/main');
 $this->registerMetaTag(['property' => 'og:image', 'content' => $mainUrl . '/img/Yii2.png']);
 $this->registerMetaTag(['property' => 'og:title', 'content' => $this->title]);
+$this->registerLinkTag(['rel' => 'image_src', 'href' => $mainUrl . '/img/Yii2.png']);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
