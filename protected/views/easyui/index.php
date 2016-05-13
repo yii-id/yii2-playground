@@ -25,10 +25,10 @@ $this->registerCss($css);
 <table id="dg" style="width: 100%;" toolbar="#dg-toolbar">
     <thead>
         <tr>
-            <th field="name" sortable="true" width="180">Nama</th>
-            <th field="email" sortable="true" width="160">Email</th>
-            <th field="phone" sortable="true" width="160">Telpon</th>
-            <th field="keterangan" sortable="true" width="260">Keterangan</th>
+            <th field="code" sortable="true" width="180">Code</th>
+            <th field="name" sortable="true" width="160">Name Product</th>
+            <th field="category_id" sortable="true" width="160">Category</th>
+            <th field="status" sortable="true" width="260">Status</th>
         </tr>
     </thead>
 </table>
@@ -46,20 +46,20 @@ $this->registerCss($css);
     <form id="form" method="post">
         <table width="100%">
             <tr>
-                <th>Nama</th>
-                <td><input name="name" class="easyui-textbox" required="true"></td>
+                <th>Code</th>
+                <td><input name="code" class="easyui-textbox" required="true"></td>
             </tr>
             <tr>
-                <th>Email</th>
-                <td><input name="email" class="easyui-textbox" ></td>
+                <th>Name Product</th>
+                <td><input name="name" class="easyui-textbox" ></td>
             </tr>
             <tr>
-                <th>Telpon</th>
-                <td><input name="phone" class="easyui-textbox" ></td>
+                <th>Kategori Id</th>
+                <td><input name="category_id" class="easyui-textbox" ></td>
             </tr>
             <tr>
-                <th>Keterangan</th>
-                <td><input name="keterangan" class="easyui-textbox" ></td>
+                <th>Status</th>
+                <td><input name="status" class="easyui-textbox" ></td>
             </tr>
         </table>
     </form>

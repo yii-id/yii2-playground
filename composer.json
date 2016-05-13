@@ -29,7 +29,10 @@
         "mdmsoft/yii2-action-filter": "~1.0",
         "rmrevin/yii2-fontawesome": "~2.0",
         "almasaeed2010/adminlte": "~2.0",
-        "scrivo/highlight.php": "~8.0"
+        "scrivo/highlight.php": "~8.0",
+        "bower-asset/angular": "1.4.x",
+        "bower-asset/angular-route": "1.4.x",
+        "bower-asset/angular-resource": "1.4.x"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

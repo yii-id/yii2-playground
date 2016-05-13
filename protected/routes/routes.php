@@ -3,12 +3,7 @@ return[
     'Home' => ['url' => ['site/index']],
     'Easyui' => [
         'Crud Sederhana' => [
-            'url' => ['order/index'],
-            'urls' => [
-                ['order/view'],
-                ['order/create'],
-                ['order/update'],
-            ],
+            'url' => ['easyui/index'],
             'source' => '@app/routes/easyui-crud.md',
         ],
     ],

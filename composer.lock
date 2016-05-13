@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "922bf37b9877ba7807a51e62c226df0e",
-    "content-hash": "0e8da590eddf37a4e8b56e8619dd0f31",
+    "hash": "15b69c3f9bd71c3ec7899659a03bc5b7",
+    "content-hash": "b6b46efb489fe9b7e424892996d50c78",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -46,6 +46,81 @@
                 "web"
             ],
             "time": "2016-03-24 14:31:41"
+        },
+        {
+            "name": "bower-asset/angular",
+            "version": "v1.4.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular.git",
+                "reference": "57f5cd80e00507766e01ca75a8b42c0456219666"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular/zipball/57f5cd80e00507766e01ca75a8b42c0456219666",
+                "reference": "57f5cd80e00507766e01ca75a8b42c0456219666",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular.js",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/angular-resource",
+            "version": "v1.4.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular-resource.git",
+                "reference": "61a0f4f468ee6edcdc6c7e3d356b819fea34bacb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular-resource/zipball/61a0f4f468ee6edcdc6c7e3d356b819fea34bacb",
+                "reference": "61a0f4f468ee6edcdc6c7e3d356b819fea34bacb",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": "1.4.10"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular-resource.js",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "bower-asset/angular-route",
+            "version": "v1.4.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/angular/bower-angular-route.git",
+                "reference": "e47171deb69f1627ce8ab8cea3cf4ee79bf559d0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/angular/bower-angular-route/zipball/e47171deb69f1627ce8ab8cea3cf4ee79bf559d0",
+                "reference": "e47171deb69f1627ce8ab8cea3cf4ee79bf559d0",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/angular": "1.4.10"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": "./angular-route.js",
+                "bower-asset-ignore": []
+            },
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "bower-asset/bootstrap",
