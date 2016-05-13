@@ -42,7 +42,7 @@ $this->registerJs($this->render('js/markdown-editor.js'));
         </div>
         <div class="tab-pane" id="pane-preview">
             <div style="padding: 5px;">
-                
+
             </div>
         </div>
     </div>

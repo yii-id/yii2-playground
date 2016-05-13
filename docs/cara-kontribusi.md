@@ -26,37 +26,27 @@ Tambahkan demo yang dibuat ke dalam `array`. Bisa ke dalam salah satu `key` yang
 return [
     ...
     'Full Calendar' => [
-        'Contoh 1' => 'calendar/contoh1.php',
+        'Contoh 1' => [
+            'url' => ['site/page', 'view' => 'contoh-fullcalendar'], // wajib
+            'urls' => [
+                // jika ada url lain yang terkait. Url yang dilist di sini akan 
+                // dianggap sebagai satu thread untuk komentar/disqus
+                // opsional
+               ['site/page', 'view' => 'page-lain'],
+               ['site/page', 'view' => 'page-lain-lagi'],
+            ],
+            'source' => '@app/routes/fulcalendar.md' // opsional, berisi keterangan atau source code utk demo
+        ],
     ],
 ];
 ```
-Selanjutnya adalah membuat file `protected/routes/calendar/contoh1.php`. File ini berisi konfigurasi untuk demo tersebut.
+Selanjutnya adalah membuat file `protected/routes/fulcalendar.md`. File ini berisi keterangan atau soure dari demo tersebut.
 Formatnya
-```php
-return [
-    'url' => ['site/page', 'view' => 'contoh-fullcalendar'], // wajib
-    'author' => 'Nama Anda', // optional
-    'text' => "Keterangan singkat untuk demo anda. Optional. Bisa
-menyertakan *markdown* `syntax` di sini.
-",
-    'sources' => [ // source yang akan ditampilakan
-        [
-            'source' => '@app/views/pages/contoh-fullcalendar.php',
-            'lang' => 'html', // opsional. defaultnya baca ext file
-            'text' => 'Keterangan source', // opsional
-        ],
-        '@app/views/pages/js/fullcalendar.js',
-        // Sintak lain yg disuport adalah 'app\controllers\NamaController'
-        // atau bisa juga 'app\models\MyModel::rules' untuk menampilkan hanya 1 method
-    ],
-    'urls' => [ 
-        // jika ada url lain yang terkait. Url yang dilist di sini akan 
-        // dianggap sebagai satu thread untuk komentar/disqus
-        // opsional
-       ['site/page', 'view' => 'page-lain'],
-       ['site/page', 'view' => 'page-lain-lagi'],
-    ]
-];
+```markdown
+### Oleh Nama <namaemail@example.com>
+
+>>@app/views/pages/contoh-fullcalendar.php
+>>@app/views/pages/contoh-fullcalendar.js
 ```
 Setelah itu silakan melakukan pull request. Kami akan mereview kode anda :D.
 Kami nantikan partisipasi anda untuk perkembangan Yii Indonesia.

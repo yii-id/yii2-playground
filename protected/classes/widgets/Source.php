@@ -30,13 +30,13 @@ class Source extends Widget
 
     public function init()
     {
-        if (!empty(Yii::$app->params['github'])) {
-            $this->github = rtrim(Yii::$app->params['github'], '/') . '/';
-        }
-        $appPath = Yii::getAlias('@app');
-        $this->appPath = $appPath . '/';
-        $this->rootPath = Yii::getAlias('@root') . '/';
-        $this->vendorPath = Yii::getAlias('@vendor') . '/';
+//        if (!empty(Yii::$app->params['github'])) {
+//            $this->github = rtrim(Yii::$app->params['github'], '/') . '/';
+//        }
+//        $appPath = Yii::getAlias('@app');
+//        $this->appPath = $appPath . '/';
+//        $this->rootPath = Yii::getAlias('@root') . '/';
+//        $this->vendorPath = Yii::getAlias('@vendor') . '/';
     }
 
     protected function resolveSource($source)
@@ -138,7 +138,7 @@ CODE;
     public function run()
     {
         $config = Route::get();
-        if (empty($config)) {
+        if (empty($config) || empty($config['source'])) {
             return;
         }
         SourceAsset::register($this->getView());
@@ -149,17 +149,9 @@ CODE;
             return $content;
         }
 
-        $content = [];
-        if (isset($config['sourceText'])) {
-            $content[] = $config['sourceText'];
-        }
-        foreach ($config['sources'] as $i => $block) {
-            $content[] = $this->renderCode($i, $block);
-        }
-
-        $content = Markdown::process(implode("\n", $content));
+        $content = Markdown::process($config['source']);
         if ($cache) {
-            $dependency = new FileDependency(['fileName' => $config['file']]);
+            $dependency = new FileDependency(['fileName' => '@app/routes/routes.php']);
             $cache->set($cacheKey, $content, 0, $dependency);
         }
         return $content;

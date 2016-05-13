@@ -9,7 +9,6 @@ $this->title = 'Yii2 Playground';
 $contribusi = file_get_contents(Yii::getAlias('@root/docs/cara-kontribusi.md'));
 ?>
 <div class="site-index">
-
     <div class="jumbotron">
         <h1>Selamat Datang!</h1>
         <p class="lead">Aplikasi Yii2 Playground</p>

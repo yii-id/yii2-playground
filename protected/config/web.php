@@ -38,6 +38,17 @@ return [
                 ],
             ],
         ],
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'rules' => [
+                'pages/<view:[\w\/-]+>' => 'site/page',
+                ['class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'api/product' => 'product-rest',
+                    ]
+                ],
+            ],
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

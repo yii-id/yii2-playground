@@ -14,9 +14,7 @@ use yii\caching\FileDependency;
  */
 class Route
 {
-    public static $configFile = '@app/routes/routes.php';
     public static $currentName;
-    protected static $basePath;
     private static $_routes;
     private static $_names;
     private static $_menus;
@@ -76,14 +74,11 @@ class Route
                 return;
             }
 
-            static::$configFile = Yii::getAlias(static::$configFile);
-            static::$basePath = dirname(static::$configFile);
-
-            $items = static::requireFile(static::$configFile);
+            $items = require(Yii::getAlias('@app/routes/routes.php'));
             self::$_menus = static::resolveRecursive($items, '');
             if ($cache) {
                 $data = [self::$_menus, self::$_names, self::$_routes];
-                $cache->set(__METHOD__, $data, 0, new FileDependency(['fileName' => static::$configFile]));
+                $cache->set(__METHOD__, $data, 0, new FileDependency(['fileName' => '@app/routes/routes.php']));
             }
         }
     }
@@ -92,74 +87,44 @@ class Route
     {
         $result = [];
         foreach ($items as $label => $item) {
-            if (is_array($item) && !isset($item['url'])) {
+            if (!isset($item['url'])) {
                 $result[] = [
                     'label' => $label,
                     'name' => md5($prefix . $label),
                     'items' => static::resolveRecursive($item, $prefix . $label . '/'),
                 ];
             } else {
-                if (is_string($item)) {
-                    if (strncmp($item, '@', 1) === 0) {
-                        $file = Yii::getAlias($item);
-                    } else {
-                        $file = static::$basePath . '/' . ltrim($item, '/');
-                    }
-                    $item = static::requireFile($file);
-                } else {
-                    $file = static::$configFile;
+                $url = $item['url'];
+                $url[0] = '/' . ltrim($url[0], '/');
+                $item['name'] = $name = md5(serialize($url));
+                $item['canonical'] = Url::to($url, true);
+                if (!isset($item['label'])) {
+                    $item['label'] = $label;
                 }
-                if (!isset($item['file'])) {
-                    $item['file'] = $file;
-                }
-                $result[] = static::resolveItem($item, $label);
-            }
-        }
-        return $result;
-    }
 
-    protected static function requireFile($_file_)
-    {
-        if (!is_file($_file_) && is_file($_file_ . '.php')) {
-            $_file_ = $_file_ . '.php';
-        }
-        return require $_file_;
-    }
-
-    protected static function resolveItem($item, $label)
-    {
-        $url = $item['url'];
-        $url[0] = '/' . ltrim($url[0], '/');
-        $item['name'] = $name = md5(serialize($url));
-        $item['canonical'] = Url::to($url, true);
-
-        if (!isset($item['label'])) {
-            $item['label'] = $label;
-        }
-        $result = isset($item['menuOptions']) ? $item['menuOptions'] : [];
-        $result = array_merge($result, [
-            'url' => $url,
-            'name' => $name,
-            'label' => $item['label'],
-        ]);
-
-        $route = $url[0];
-        unset($url[0]);
-        self::$_names[$route][] = [
-            'params' => $url,
-            'name' => $name,
-        ];
-        if (isset($item['urls'])) {
-            foreach ($item['urls'] as $url) {
-                $route = '/' . ltrim($url[0], '/');
+                $route = $url[0];
                 unset($url[0]);
                 self::$_names[$route][] = [
                     'params' => $url,
                     'name' => $name,
                 ];
+                if (isset($item['urls'])) {
+                    foreach ($item['urls'] as $url) {
+                        $route = '/' . ltrim($url[0], '/');
+                        unset($url[0]);
+                        self::$_names[$route][] = [
+                            'params' => $url,
+                            'name' => $name,
+                        ];
+                    }
+                }
+                if(isset($item['source']) && preg_match('/^[@\/][\w\/\-\.]+.md$/', $item['source'])){
+                    $item['source'] = file_get_contents(Yii::getAlias($item['source']));
+                }
+                self::$_routes[$name] = $item;
+                $result[] = $item;
             }
         }
-        self::$_routes[$name] = $item;
         return $result;
     }
 }

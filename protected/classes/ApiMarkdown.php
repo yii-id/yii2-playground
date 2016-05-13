@@ -13,7 +13,9 @@ use Highlight\Highlighter;
  */
 class ApiMarkdown extends \cebe\markdown\GithubMarkdown
 {
-    use SmileTrait;
+    use SmileTrait,
+        SourceTrait;
+
     /**
      * @var Highlighter
      */
