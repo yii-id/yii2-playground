@@ -58,8 +58,8 @@ $this->registerLinkTag(['rel' => 'image_src', 'href' => $mainUrl . '/img/Yii2.pn
                 color: gray;
                 font-size: 0.8em;
             }
-            span.emoji > img{
-                height: 24px;
+            img.emoji{
+                height: 1em;
             }
         </style>
     </head>

@@ -32,7 +32,7 @@ trait SmileTrait
 
     protected function renderInlineSmile($block)
     {
-        return "<img style=\"height:24px;\" alt=\"{$block[1]}\" "
+        return "<img class=\"emoji\" alt=\"{$block[1]}\" "
         . "src=\"http://www.emoji-cheat-sheet.com/graphics/emojis/{$block[1]}.png\"></img>";
     }
 }

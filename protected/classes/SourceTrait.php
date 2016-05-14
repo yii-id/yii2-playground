@@ -55,7 +55,8 @@ trait SourceTrait
                 $label = $matches[1];
             }
             $filename = $ref->getFileName();
-            $contents = array_slice(file($filename), $ref->getStartLine() - 1, $ref->getEndLine() - $ref->getStartLine());
+            $contents = array_slice(file($filename), $ref->getStartLine() - 1, $ref->getEndLine() - $ref->getStartLine()
+                + 1);
             return[
                 [
                     'linkCode',
@@ -76,7 +77,7 @@ trait SourceTrait
                 $lang = isset($langMap[$ext]) ? $langMap[$ext] : $ext;
             }
             if (!empty($matches[3])) {
-                $length = empty($matches[5]) ? 1 : $matches[5] - $matches[3];
+                $length = empty($matches[5]) ? 1 : $matches[5] - $matches[3] + 1;
                 $contents = implode('', array_slice(file($filename), $matches[3] - 1, $length));
                 $filename .= '#L' . substr($matches[2], 1);
             } else {

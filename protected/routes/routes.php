@@ -26,6 +26,10 @@ return[
             'url' => ['site/page', 'view' => 'contoh-twig'],
             'source' => '@app/routes/contoh-twig.md'
         ],
+        'Captcha' => [
+            'url' => ['site/page', 'view' => 'captcha'],
+            'source' => '@app/routes/captcha.md'
+        ]
     ],
     'CRUD' => [
         'Header Detail' => [
