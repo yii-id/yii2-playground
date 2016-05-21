@@ -2,13 +2,15 @@
 
 namespace app\models;
 
+use yii\base\Model;
+
 /**
  * Description of Imsakiyah
  *
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
-class Imsakiyah extends \yii\base\Model
+class Imsakiyah extends Model
 {
     // panjang 1 tahun rata-rata dalam detik
     const YEAR_LENGTH = 31557600;

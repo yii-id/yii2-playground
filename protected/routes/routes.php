@@ -47,5 +47,11 @@ return[
             'url' => ['product/index'],
             'source' => '@app/routes/contoh-export-csv.md'
         ]
+    ],
+    'Google Map' => [
+        'Imsakiyah' => [
+            'url' => ['google-map/index'],
+            'source' => '@app/routes/gmap-imsakiyah.md'
+        ]
     ]
 ];
