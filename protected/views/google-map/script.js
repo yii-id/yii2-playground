@@ -1,5 +1,6 @@
 (function ($) {
     var pos = {lat: -6.2115, lng: 106.8452};
+    var urlTimeZone = 'https://maps.googleapis.com/maps/api/timezone/json?timestamp=0&location=';
 
     var map = new google.maps.Map(document.getElementById('map'), {
         center: pos,
@@ -11,13 +12,13 @@
         map: map,
     });
     getLocationName(pos);
-    setImsakiyah(pos);
+    getImsakiyahTimezone(pos);
 
     map.addListener('click', function (e) {
         marker.setPosition(e.latLng);
         var pos = {lat: e.latLng.lat(), lng: e.latLng.lng()};
         getLocationName(pos);
-        setImsakiyah(pos);
+        getImsakiyahTimezone(pos);
     });
 
     if (navigator.geolocation) {
@@ -29,10 +30,9 @@
             marker.setPosition(pos);
             map.panTo(pos);
             getLocationName(pos);
-            setImsakiyah(pos);
+            getImsakiyahTimezone(pos);
         });
     }
-
 
     function getLocationName(pos) {
         var s = '(' + pos.lat + ', ' + pos.lng + ')';
@@ -53,5 +53,15 @@
                     .appendTo($bodyTbl);
             });
         });
+    }
+    function getImsakiyahTimezone(pos) {
+        $.get(urlTimeZone + pos.lat + ',' + pos.lng)
+            .done(function (r) {
+                var o = {lat: pos.lat, lng: pos.lng};
+                if (r.rawOffset) {
+                    o.rawOffset = r.rawOffset;
+                }
+                setImsakiyah(o);
+            });
     }
 })(jQuery);

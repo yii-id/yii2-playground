@@ -20,6 +20,7 @@ class Imsakiyah extends Model
     public $date;
     public $timestamp;
     public $timeZone;
+    public $rawOffset;
     public $ketinggian = 100;
 
     public function rules()
@@ -34,6 +35,9 @@ class Imsakiyah extends Model
                 return (int) ($this->bujur / 15);
             }],
             [['timeZone'], 'integer', 'min' => -12, 'max' => 12],
+            [['rawOffset'], 'default', 'value' => function() {
+                return $this->timeZone * 3600;
+            }]
         ];
     }
 
@@ -95,7 +99,7 @@ class Imsakiyah extends Model
     public function getImsakiyah()
     {
         // dzuhur
-        $dzuhur = (12 * 3600) + ($this->timeZone * 3600) - ($this->bujur * 240) - $this->getET();
+        $dzuhur = (12 * 3600) + $this->rawOffset - ($this->bujur * 240) - $this->getET();
         $delta = $this->getDelta();
         $result = [];
 

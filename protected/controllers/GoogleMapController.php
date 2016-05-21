@@ -20,13 +20,13 @@ class GoogleMapController extends Controller
         return $this->render('index');
     }
 
-    public function actionImsakiyah($lat, $lng)
+    public function actionImsakiyah($lat, $lng, $rawOffset = '')
     {
         \Yii::$app->getResponse()->format = 'json';
         $model = new Imsakiyah([
             'bujur' => $lng,
             'lintang' => $lat,
-            'timeZone' => 7,
+            'rawOffset' => $rawOffset,
         ]);
 
         if ($model->validate()) {
