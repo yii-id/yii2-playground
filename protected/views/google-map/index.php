@@ -6,7 +6,7 @@ use yii\helpers\Url;
 //use yii\helpers\Html;
 
 /* @var $this View */
-$url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAL5FFqpECY90gnIOqm9-JEXkOe8Tr0ho8';
+$url = 'https://maps.googleapis.com/maps/api/js?key=' . Yii::$app->params['google.api.key'];
 $this->registerJsFile($url, ['async' => true, 'defer' => true]);
 
 $this->registerJs('var urlImsakiyah = ' . json_encode(Url::to(['imsakiyah'])) . ';');
