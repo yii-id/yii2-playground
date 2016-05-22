@@ -35,12 +35,12 @@
     }
 
     function getLocationName(pos) {
-        var s = '(' + pos.lat + ', ' + pos.lng + ')';
+        $('#location-cord').text('(' + pos.lat + ', ' + pos.lng + ')');
         geocoder.geocode({'latLng': pos}, function (results, status) {
             if (status === google.maps.GeocoderStatus.OK && results[1]) {
-                $('#location-name').text(results[1].formatted_address + '\n' + s);
+                $('#location-name').text(results[1].formatted_address);
             } else {
-                $('#location-name').text(s);
+                $('#location-name').text('');
             }
         });
     }
@@ -60,6 +60,9 @@
                 var o = {lat: pos.lat, lng: pos.lng};
                 if (r.rawOffset) {
                     o.rawOffset = r.rawOffset;
+                }
+                if (r.timeZoneId) {
+                    $('#location-zone').text(r.timeZoneId);
                 }
                 setImsakiyah(o);
             });

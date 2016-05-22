@@ -16,7 +16,9 @@ $this->registerJs($this->render('script.js'));
     <div id="map" style="height: 400px;"></div>
 </div>
 <div class="col-md-4">
-    <strong id="location-name"></strong>
+    <div id="location-name"></div>
+    <div id="location-zone"></div>
+    <div id="location-cord"></div>
     <table class="table table-bordered">
         <thead>
             <tr>
