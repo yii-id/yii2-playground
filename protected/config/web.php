@@ -64,6 +64,8 @@ return [
         'class' => 'app\classes\PageStatistic',
         'except' => [
             'chat/message',
+            'site/error',
+            'site/captcha',
         ],
     ],
     'params' => $params,
