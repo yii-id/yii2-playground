@@ -1,6 +1,7 @@
 <?php
 $params = array_merge(
-    require(__DIR__ . '/params.php'), require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php'),
+    require(__DIR__ . '/params-local.php')
 );
 
 return [
@@ -57,6 +58,12 @@ return [
         ],
         'session' => [
             'class' => 'yii\web\DbSession'
+        ],
+    ],
+    'as statistic' => [
+        'class' => 'app\classes\PageStatistic',
+        'except' => [
+            'chat/message',
         ],
     ],
     'params' => $params,

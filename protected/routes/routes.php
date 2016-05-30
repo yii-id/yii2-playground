@@ -1,6 +1,13 @@
 <?php
 return[
-    'Home' => ['url' => ['site/index']],
+    'Site' =>
+    [
+        'Home' => ['url' => ['site/index']],
+        'Statistic' => [
+            'url' => ['page-statistic/index'],
+            'source' => '@app/routes/page-statistic.md'
+        ]
+    ],
     'Easyui' => [
         'Crud Sederhana' => [
             'url' => ['easyui/index'],
@@ -53,5 +60,5 @@ return[
             'url' => ['google-map/index'],
             'source' => '@app/routes/gmap-imsakiyah.md'
         ]
-    ]
+    ],
 ];
