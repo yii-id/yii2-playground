@@ -21,7 +21,8 @@ class PageStatistic extends ActionFilter
      */
     public function afterAction($action, $result)
     {
-        if (Yii::$app->getRequest()->getIsAjax() && !Yii::$app->getRequest()->getIsPjax()) {
+        $request = Yii::$app->getRequest();
+        if (!$request->getIsGet() || ($request->getIsAjax() && !$request->getIsPjax())) {
             // if ajax but not pjax
             return $result;
         }
