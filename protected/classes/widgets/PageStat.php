@@ -5,6 +5,8 @@ namespace app\classes\widgets;
 use Yii;
 use yii\base\Widget;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * Description of PageStat
@@ -14,36 +16,30 @@ use yii\db\Query;
  */
 class PageStat extends Widget
 {
+    public $total = false;
+    public $unique = false;
+    public $template = '{num} Hit(s)';
     public $options = [];
-    public $itemOptions = [];
 
     public function run()
     {
-        $route = Yii::$app->controller->actionParams;
-        $route[0] = Yii::$app->controller->getRoute();
+        if ($this->total) {
+            $pageStat = (new Query())
+                    ->select(['count' => 'sum([[count]])', 'unique_count' => 'sum([[unique_count]])'])
+                    ->from('{{%page_statistic}}')->one();
+        } else {
+            $route = Yii::$app->controller->actionParams;
+            $route[0] = Yii::$app->controller->getRoute();
 
-        $id = md5(serialize($route));
-        $items = [];
-
-        $pageStat = (new Query())
-                ->select(['count', 'unique_count'])
-                ->from('{{%page_statistic}}')
-                ->where(['id' => $id])->one();
-        if ($pageStat) {
-            $items[] = ['label' => 'Page hit ' . number_format($pageStat['count'])];
-            $items[] = ['label' => 'Page unique hit ' . number_format($pageStat['unique_count'])];
+            $id = md5(serialize($route));
+            $pageStat = (new Query())
+                    ->select(['count', 'unique_count'])
+                    ->from('{{%page_statistic}}')
+                    ->where(['id' => $id])->one();
         }
-        $pageStat = (new Query())
-                ->select(['count' => 'sum([[count]])', 'unique_count' => 'sum([[unique_count]])'])
-                ->from('{{%page_statistic}}')->one();
-        if ($pageStat) {
-            $items[] = ['label' => 'Total hit ' . number_format($pageStat['count'])];
-            $items[] = ['label' => 'Total unique hit ' . number_format($pageStat['unique_count'])];
-        }
-        
-        return SideNav::widget([
-            'options'=>  $this->options,
-            'items'=>$items,
-        ]);
+        $options = $this->options;
+        $tag = ArrayHelper::remove($options, 'tag', 'div');
+        $n = $pageStat ? number_format($pageStat[$this->unique ? 'unique_count' : 'count']) : 1;
+        return Html::tag($tag, str_replace('{num}', $n, $this->template), $options);
     }
 }
