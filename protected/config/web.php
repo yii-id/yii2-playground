@@ -14,6 +14,9 @@ return [
             'identityClass' => 'app\models\ar\User',
             'loginUrl' => ['user/login'],
             'enableAutoLogin' => true,
+            'as loginOnce' => [
+                'class' => 'app\classes\LoginOnce'
+            ]
         ],
         'view' => [
             'renderers' => [

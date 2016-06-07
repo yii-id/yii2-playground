@@ -24,6 +24,19 @@ use yii\helpers\Url;
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li>
+                    <?php if (Yii::$app->getUser()->getIsGuest()): ?>
+                        <a href="<?= Url::to(['/user/login']) ?>" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                            <span >Login</span>
+                        </a>
+                    <?php else: ?>
+                        <a href="<?= Url::to(['/user/logout']) ?>" aria-expanded="false" data-method="POST">
+                            <i class="fa fa-user"></i>
+                            <span >Logout (<?= Yii::$app->getUser()->identity->username ?>)</span>
+                        </a>
+                    <?php endif; ?>
+                </li>
+                <li>
                     <a href="<?= Url::to(['/chat/index']) ?>" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
                         <span data-toggle="tooltip" title=""  class="label label-success" id="msg-notif"></span>
