@@ -10,10 +10,13 @@ use yii\di\Instance;
 use yii\caching\Cache;
 use yii\base\NotSupportedException;
 use yii\web\ForbiddenHttpException;
+use yii\web\Cookie;
 
 /**
  * Description of LoginOnce
  *
+ * @property User $owner
+ * 
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
@@ -30,6 +33,18 @@ class LoginOnce extends Behavior
      * @var boolean
      */
     public $throwExeption = true;
+
+    /**
+     *
+     * @var string
+     */
+    public $cookieKey = '_d_sessid';
+
+    /**
+     *
+     * @var boolean
+     */
+    public $kickLogedUser = false;
 
     /**
      * @inheritdoc
@@ -58,16 +73,20 @@ class LoginOnce extends Behavior
     {
         $user_id = $event->identity->getId();
         if (($sess_id = $this->cache->get([__CLASS__, $user_id])) !== false) {
+            if (Yii::$app->getRequest()->getCookies()->getValue($this->cookieKey) == $sess_id) {
+                // kalau dari browser yang sama, langsung login
+                return;
+            }
             $session = Yii::$app->getSession();
-            if ($session->getUseCustomStorage()) {
-                if ($session->readSession($sess_id)) {
-                    if ($this->throwExeption) {
-                        throw new ForbiddenHttpException('Not allowed login more than one');
-                    } else {
-                        $event->isValid = false;
-                    }
+            if ($this->kickLogedUser) {
+                $session->destroySession($sess_id);
+            } elseif ($session->getUseCustomStorage() && $session->readSession($sess_id)) {
+                if ($this->throwExeption && !$event->cookieBased) {
+                    throw new ForbiddenHttpException('Not allowed login more than one');
+                } else {
+                    $event->isValid = false;
                 }
-            } else {
+            } elseif ($session->getUseCustomStorage()) {
                 throw new NotSupportedException('Session not supported');
             }
         }
@@ -80,6 +99,12 @@ class LoginOnce extends Behavior
     public function afterLogin($event)
     {
         $user_id = $event->identity->getId();
-        $this->cache->set([__CLASS__, $user_id], Yii::$app->getSession()->getId());
+        $sess_id = Yii::$app->getSession()->getId();
+        $this->cache->set([__CLASS__, $user_id], $sess_id);
+        Yii::$app->getResponse()->getCookies()->add(new Cookie([
+            'name' => $this->cookieKey,
+            'value' => $sess_id,
+            'expire' => time() + 24 * 3600,
+        ]));
     }
 }
