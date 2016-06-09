@@ -86,7 +86,7 @@ class LoginOnce extends Behavior
                 } else {
                     $event->isValid = false;
                 }
-            } elseif ($session->getUseCustomStorage()) {
+            } elseif (!$session->getUseCustomStorage()) {
                 throw new NotSupportedException('Session not supported');
             }
         }
