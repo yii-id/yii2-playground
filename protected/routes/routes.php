@@ -36,6 +36,10 @@ return[
         'Captcha' => [
             'url' => ['site/page', 'view' => 'captcha'],
             'source' => '@app/routes/captcha.md'
+        ],
+        'View JS' => [
+            'url' => ['site/page', 'view' => 'contoh-vuejs'],
+            'source' => '@app/routes/contoh-vuejs.md'
         ]
     ],
     'CRUD' => [
