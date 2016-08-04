@@ -62,7 +62,7 @@ trait SourceTrait
                     'linkCode',
                     'content' => implode('', $contents),
                     'language' => 'php',
-                    'link' => $filename . '#L' . $ref->getStartLine() . '-' . $ref->getEndLine(),
+                    'link' => $filename . '#L' . $ref->getStartLine() . '-L' . $ref->getEndLine(),
                     'label' => $label,
                 ],
                 $current,
@@ -79,7 +79,7 @@ trait SourceTrait
             if (!empty($matches[3])) {
                 $length = empty($matches[5]) ? 1 : $matches[5] - $matches[3] + 1;
                 $contents = implode('', array_slice(file($filename), $matches[3] - 1, $length));
-                $filename .= '#L' . substr($matches[2], 1);
+                $filename .= "#L{$matches[3]}" . empty($matches[5]) ? '' : "-L{$matches[5]}";
             } else {
                 $contents = file_get_contents($filename);
             }
