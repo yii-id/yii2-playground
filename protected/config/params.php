@@ -10,4 +10,5 @@ return [
         '@vendor' => false,
     ],
     'google.api.key' => '',
+    'user.rememberMeDuration' => 24 * 3600
 ];

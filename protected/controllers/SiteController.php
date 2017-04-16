@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\form\Contact;
 use yii\web\Controller;
+use app\classes\AuthHandler;
 
 /**
  * Site controller
@@ -45,8 +46,17 @@ class SiteController extends Controller
                 'class' => 'yii\web\ViewAction',
                 'viewPrefix' => '@app/views/pages',
                 'layout' => 'playground',
-            ]
+            ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
         ];
+    }
+
+    public function onAuthSuccess($client)
+    {
+        (new AuthHandler($client))->handle();
     }
 
     public function actionIndex()

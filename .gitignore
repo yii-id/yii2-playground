@@ -27,4 +27,5 @@ phpunit.phar
 # application files
 /yii
 /index.php
+/deploy.php
 /.htaccess

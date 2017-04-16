@@ -1,7 +1,6 @@
 <?php
 $params = array_merge(
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php'), require(__DIR__ . '/params-local.php')
 );
 
 return [
@@ -14,9 +13,9 @@ return [
             'identityClass' => 'app\models\ar\User',
             'loginUrl' => ['user/login'],
             'enableAutoLogin' => true,
-            'as loginOnce' => [
-                'class' => 'app\classes\LoginOnce'
-            ]
+//            'as loginOnce' => [
+//                'class' => 'app\classes\LoginOnce'
+//            ]
         ],
         'view' => [
             'renderers' => [
@@ -62,6 +61,30 @@ return [
         'session' => [
             'class' => 'yii\web\DbSession'
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'normalizeUserAttributeMap' => [
+                        'email' => ['emails', 0, 'value'],
+                        'name' => 'displayName',
+                        'avatar' => ['image', 'url'],
+                    ]
+                ],
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'normalizeUserAttributeMap' => [
+                        'avatar' => function ($attributes){
+                            return "https://graph.facebook.com/v2.6/{$attributes['id']}/picture?type=normal";
+                        },
+                    ]
+                ],
+                'github' => [
+                    'class' => 'yii\authclient\clients\GitHub',
+                ],
+            ],
+        ]
     ],
     'as statistic' => [
         'class' => 'app\classes\PageStatistic',

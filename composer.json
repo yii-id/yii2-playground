@@ -9,6 +9,12 @@
         "source": "https://github.com/yii-id/yii2-playground"
     },
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.4",
@@ -16,6 +22,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-jui": "~2.0",
         "yiisoft/yii2-twig": "~2.0",
+        "yiisoft/yii2-authclient": "~2.0",
         "deesoft/yii2-console": "~1.0",
         "deesoft/yii2-tools": "~1.0",
         "deesoft/yii2-handsontable": "~1.0",
@@ -30,7 +37,9 @@
         "rmrevin/yii2-fontawesome": "~2.0",
         "almasaeed2010/adminlte": "~2.0",
         "scrivo/highlight.php": "~8.0",
-        "pusher/pusher-php-server": "^2.2"
+        "pusher/pusher-php-server": "^2.2",
+        "firebase/php-jwt": "~2.0|~3.0|~4.0",
+        "deesoft/yii2-angularjs": "~1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",
@@ -40,7 +49,7 @@
         "process-timeout": 1800
     },
     "extra": {
-        "asset-installer-paths": {
+        "config.fxp-asset.installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
         }

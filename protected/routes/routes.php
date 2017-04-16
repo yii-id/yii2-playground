@@ -65,4 +65,13 @@ return[
             'source' => '@app/routes/gmap-imsakiyah.md'
         ]
     ],
+    'Angularjs' => [
+        'Chat' => [
+            'url' => ['site/page', 'view' => 'chat-angular'],
+            'source' => '@app/routes/angular-chat.md'
+        ],
+//        'Route' => [
+//            'url' => ['site/page', 'view' => 'basic-angular'],
+//        ],
+    ]
 ];

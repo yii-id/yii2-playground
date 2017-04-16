@@ -3,3 +3,4 @@ console-local.php
 web-local.php
 params-local.php
 bootstrap-local.php
+*.json

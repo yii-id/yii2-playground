@@ -101,11 +101,12 @@ $this->registerLinkTag(['rel' => 'image_src', 'href' => $mainUrl . '/img/Yii2.pn
                 </section>
             </aside>
             <div class="content-wrapper">
-<?= $content; ?>
+                <?= app\widgets\Alert::widget() ?>
+                <?= $content; ?>
                 <section class="content">
                     <div class="row">
                         <div class="col-lg-12">
-<?= Disqus::widget() ?>
+                            <?= Disqus::widget() ?>
                         </div>
                     </div>
                 </section>
@@ -118,7 +119,7 @@ $this->registerLinkTag(['rel' => 'image_src', 'href' => $mainUrl . '/img/Yii2.pn
                 <strong>Copyright &copy; <?= date('Y') ?> <a href="#">Deesoft</a>.</strong> All rights reserved.
             </footer>
         </div>
-<?php $this->endBody() ?>
+        <?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>
