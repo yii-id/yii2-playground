@@ -2,13 +2,13 @@
 
 use yii\web\View;
 use dee\angularjs\Module;
-
+use yii\helpers\Json;
 //use yii\helpers\Html;
 
 /* @var $this View */
 $this->registerJsFile('https://www.gstatic.com/firebasejs/3.7.8/firebase.js', ['position' => View::POS_HEAD]);
 $firebaseConfig = json_encode(Yii::$app->params['firebase.web.config']);
-$credential = json_decode(file_get_contents(Yii::getAlias('@app/config/firebase-credential.json')), true);
+$credential = Json::decode(file_get_contents(Yii::getAlias('@app/config/firebase-credential.json')));
 $time = time();
 
 $clientId = 'client_' . Yii::$app->profile->id;
