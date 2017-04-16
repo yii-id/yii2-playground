@@ -46,12 +46,12 @@
         "deesoft/yii2-gii": "~1.0"
     },
     "config": {
-        "process-timeout": 1800
-    },
-    "extra": {
-        "config.fxp-asset.installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "installer-paths": {
+                "npm-asset-library": "vendor/npm",
+                "bower-asset-library": "vendor/bower"
+            }
         }
     }
 }
