@@ -29,13 +29,13 @@ $js = <<<JS
 JS;
 $this->registerJs($js, View::POS_HEAD);
 list(, $mainUrl) = Yii::$app->getAssetManager()->publish('@app/assets/main');
-Module::$moduleAssets['relativeDate'] = $mainUrl.'/js/angular-relative-date.js'
+Module::$moduleAssets['relativeDate'] = $mainUrl . '/js/angular-relative-date.js'
 ?>
-<div ng-app="myApp" class="row">
+<div ng-app="myApp">
     <?php
     Module::begin([
         'name' => 'myApp',
-        'options' => ['ng-controller' => 'ChatController'],
+        'options' => ['ng-controller' => 'ChatController', 'class' => 'row'],
         'preJsFile' => 'js/chat-pre.js',
         'depends' => ['relativeDate'],
         'controllers' => [
@@ -60,7 +60,7 @@ Module::$moduleAssets['relativeDate'] = $mainUrl.'/js/angular-relative-date.js'
             <span class="input-group-btn">
                 <button type="button" class="btn btn-primary btn-flat" ng-click="setUserName()">Set Name</button>
             </span>
-        </div><br>
+        </div>
     </div>
 
     <div class="col-lg-12">
@@ -70,7 +70,7 @@ Module::$moduleAssets['relativeDate'] = $mainUrl.'/js/angular-relative-date.js'
             </div>
             <div class="box-body">
                 <div class="direct-chat-messages">
-                    <chat-message ng-repeat="message in messages | orderBy:'time'" message="message" user="getUser(message.uid)"></chat-message>
+                    <chat-message ng-repeat="message in messages| orderBy:'time'" message="message" user="getUser(message.uid)"></chat-message>
                 </div>
             </div>
             <div class="box-footer">

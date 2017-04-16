@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
 class AdminLteAsset extends AssetBundle
 {
     //change source location
-    public $sourcePath = '@vendor/almasaeed2010/adminlte/dist';
+    public $sourcePath = '@bower/adminlte/dist';
     public $css = [
         'css/skins/_all-skins.min.css',
         'css/AdminLTE.min.css',

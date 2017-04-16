@@ -4,65 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a497bc1a164c07292323101e398b5f1",
+    "content-hash": "973fde1c565a33a9cc810bf739d8e666",
     "packages": [
         {
-            "name": "almasaeed2010/adminlte",
-            "version": "v2.4.0-alpha",
+            "name": "bower-asset/adminlte",
+            "version": "2.3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "37c8bbb01998db487382e9d62cfb398511167f3a"
+                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/37c8bbb01998db487382e9d62cfb398511167f3a",
-                "reference": "37c8bbb01998db487382e9d62cfb398511167f3a",
-                "shasum": ""
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
+                "reference": "0ab2eb7f382e79810ebf3032ce766a02af2b0f3b",
+                "shasum": null
             },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Abdullah Almsaeed",
-                    "email": "abdullah@almsaeedstudio.com"
-                }
-            ],
-            "description": "AdminLTE - admin control panel and dashboard that's based on Bootstrap 3",
-            "homepage": "http://almsaeedstudio.com/",
-            "keywords": [
-                "JS",
-                "admin",
-                "back-end",
-                "css",
-                "less",
-                "responsive",
-                "template",
-                "theme",
-                "web"
-            ],
-            "time": "2017-03-04T17:23:16+00:00"
+            "type": "library"
         },
         {
             "name": "bower-asset/bootstrap",
-            "version": "4.0.0.0-alpha6",
+            "version": "3.3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "65ffb1c3b6e94440812a2e228cb8e8be512652ec"
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/65ffb1c3b6e94440812a2e228cb8e8be512652ec",
-                "reference": "65ffb1c3b6e94440812a2e228cb8e8be512652ec",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+                "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
                 "shasum": null
             },
             "require": {
-                "bower-asset/jquery": ">=1.9.1",
-                "bower-asset/tether": ">=1.4.0,<2.0.0"
+                "bower-asset/jquery": ">=1.9.1,<4.0"
             },
             "type": "library"
         },
@@ -79,6 +54,11 @@
                 "url": "https://api.github.com/repos/handsontable/handsontable/zipball/cb4ae1651e3b456d85e0ac1767e69d72267e266c",
                 "reference": "cb4ae1651e3b456d85e0ac1767e69d72267e266c",
                 "shasum": null
+            },
+            "require": {
+                "bower-asset/moment": ">=2.9.0,<3.0.0",
+                "bower-asset/pikaday": ">=1.3.2,<2.0.0",
+                "bower-asset/zeroclipboard": ">=2.2.0,<3.0.0"
             },
             "type": "library"
         },
@@ -137,6 +117,38 @@
             "type": "library"
         },
         {
+            "name": "bower-asset/moment",
+            "version": "2.18.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moment/moment.git",
+                "reference": "b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moment/moment/zipball/b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378",
+                "reference": "b8a7fc310eb3625e83fc0c8f1ea2840fa83c7378",
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
+            "name": "bower-asset/pikaday",
+            "version": "1.5.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dbushell/Pikaday.git",
+                "reference": "5f15c0e454035dd074f3477dd65e2790faa24ee5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dbushell/Pikaday/zipball/5f15c0e454035dd074f3477dd65e2790faa24ee5",
+                "reference": "5f15c0e454035dd074f3477dd65e2790faa24ee5",
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "bower-asset/punycode",
             "version": "1.3.2.0",
             "source": {
@@ -148,22 +160,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bestiejs/punycode.js/zipball/38c8d3131a82567bfef18da09f7f4db68c84f8a3",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3",
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
-            "name": "bower-asset/tether",
-            "version": "1.4.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/HubSpot/tether.git",
-                "reference": "3d7119e590661f8c9e9e566c8a7640c189687215"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/HubSpot/tether/zipball/3d7119e590661f8c9e9e566c8a7640c189687215",
-                "reference": "3d7119e590661f8c9e9e566c8a7640c189687215",
                 "shasum": null
             },
             "type": "library"
@@ -184,6 +180,22 @@
             },
             "require": {
                 "bower-asset/jquery": ">=1.8"
+            },
+            "type": "library"
+        },
+        {
+            "name": "bower-asset/zeroclipboard",
+            "version": "2.3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zeroclipboard/zeroclipboard.git",
+                "reference": "9ddfc4623bda247f3647733f7ca3bed5bd5e4972"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zeroclipboard/zeroclipboard/zipball/9ddfc4623bda247f3647733f7ca3bed5bd5e4972",
+                "reference": "9ddfc4623bda247f3647733f7ca3bed5bd5e4972",
+                "shasum": null
             },
             "type": "library"
         },
@@ -1461,21 +1473,20 @@
         },
         {
             "name": "yiisoft/yii2-bootstrap",
-            "version": "2.1.x-dev",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-bootstrap.git",
-                "reference": "8d53c440b4412e471cdad016dded87fd42124b01"
+                "reference": "a58a4f7138a48ea635301ba454b8014eb9228463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/8d53c440b4412e471cdad016dded87fd42124b01",
-                "reference": "8d53c440b4412e471cdad016dded87fd42124b01",
+                "url": "https://api.github.com/repos/yiisoft/yii2-bootstrap/zipball/a58a4f7138a48ea635301ba454b8014eb9228463",
+                "reference": "a58a4f7138a48ea635301ba454b8014eb9228463",
                 "shasum": ""
             },
             "require": {
-                "bower-asset/bootstrap": "~4.0.0@alpha",
-                "bower-asset/tether": "1.4.*",
+                "bower-asset/bootstrap": "3.3.* | 3.2.* | 3.1.*",
                 "yiisoft/yii2": "~2.0.6"
             },
             "type": "yii2-extension",
@@ -1508,7 +1519,7 @@
                 "bootstrap",
                 "yii2"
             ],
-            "time": "2017-04-03T22:22:31+00:00"
+            "time": "2017-04-14T10:11:00+00:00"
         },
         {
             "name": "yiisoft/yii2-composer",
@@ -1822,6 +1833,9 @@
                 "reference": "588440f66559714280628a4f9799f0c4eb880a4a",
                 "shasum": null
             },
+            "require": {
+                "bower-asset/jquery": ">=1.7"
+            },
             "type": "library"
         },
         {
@@ -1910,21 +1924,21 @@
         },
         {
             "name": "yiisoft/yii2-debug",
-            "version": "2.0.6",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-debug.git",
-                "reference": "55ed2e853ed8050a34415f63a4da84f88a56f895"
+                "reference": "9f656e4721add78615d1a65c34834b5756a080d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/55ed2e853ed8050a34415f63a4da84f88a56f895",
-                "reference": "55ed2e853ed8050a34415f63a4da84f88a56f895",
+                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/9f656e4721add78615d1a65c34834b5756a080d4",
+                "reference": "9f656e4721add78615d1a65c34834b5756a080d4",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": ">=2.0.4",
-                "yiisoft/yii2-bootstrap": "*"
+                "yiisoft/yii2": "~2.0.11",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1953,7 +1967,7 @@
                 "debugger",
                 "yii2"
             ],
-            "time": "2016-03-17T03:50:19+00:00"
+            "time": "2017-04-13T11:01:19+00:00"
         },
         {
             "name": "yiisoft/yii2-gii",

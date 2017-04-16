@@ -18,7 +18,7 @@
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": ">=2.0.4",
-        "yiisoft/yii2-bootstrap": "~2.0",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "~2.0",
         "yiisoft/yii2-jui": "~2.0",
         "yiisoft/yii2-twig": "~2.0",
@@ -35,7 +35,7 @@
         "mdmsoft/yii2-widgets": "~1.0",
         "mdmsoft/yii2-action-filter": "~1.0",
         "rmrevin/yii2-fontawesome": "~2.0",
-        "almasaeed2010/adminlte": "~2.0",
+        "bower-asset/adminlte": "2.3.5",
         "scrivo/highlight.php": "~8.0",
         "pusher/pusher-php-server": "^2.2",
         "firebase/php-jwt": "~2.0|~3.0|~4.0",
@@ -46,12 +46,6 @@
         "deesoft/yii2-gii": "~1.0"
     },
     "config": {
-        "process-timeout": 1800,
-        "fxp-asset": {
-            "installer-paths": {
-                "npm-asset-library": "vendor/npm",
-                "bower-asset-library": "vendor/bower"
-            }
-        }
+        "process-timeout": 1800
     }
 }
