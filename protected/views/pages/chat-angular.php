@@ -74,11 +74,12 @@ Module::$moduleAssets['relativeDate'] = $mainUrl . '/js/angular-relative-date.js
             </div>
             <div class="box-footer">
                 <div class="form-group">
-                    <textarea type="text" placeholder="Type Message ..." class="form-control" ng-model="inpChat"
-                              ng-keypress="send($event)"></textarea>
+                    <textarea type="text" placeholder="{{user.val.name==undefined ? 'Isi nama dulu' : 'Type Message ...'}}"
+                              class="form-control" ng-model="inpChat"
+                              ng-keypress="send($event)" ng-disabled="user.val.name == undefined"></textarea>
                 </div>
             </div>
         </div>
     </div>
-    <?php Module::end(); ?>
+<?php Module::end(); ?>
 </div>
