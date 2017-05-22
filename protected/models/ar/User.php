@@ -59,6 +59,16 @@ class User extends ActiveRecord implements IdentityInterface
         ];
     }
 
+    public static function getUniqueUsername($username)
+    {
+        $i    = 1;
+        $name = $username;
+        while (static::find()->where(['username' => $name])->exists()) {
+            $name = $username.$i++;
+        }
+        return $name;
+    }
+
     /**
      * @inheritdoc
      */
@@ -196,5 +206,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function getProfile()
     {
         return $this->hasOne(UserProfile::className(), ['id' => 'id']);
+    }
+
+    public function synchronToFirebase()
+    {
+        $profile = $this->profile;
+
+        Yii::$app->firebase->update("users/user_{$this->id}", array_filter([
+            'id' => $this->id,
+            'username' => $this->username,
+            'fullname' => $profile ? $profile->fullname : null,
+            'avatarUrl' => $profile ? $profile->avatarUrl : null,
+        ]));
     }
 }

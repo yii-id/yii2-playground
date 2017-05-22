@@ -6,21 +6,19 @@ use dee\angularjs\Module;
 //use yii\helpers\Html;
 
 /* @var $this View */
+// force login
+if (Yii::$app->user->isGuest) {
+    Yii::$app->user->loginRequired();
+}
+
 $this->registerJsFile('https://www.gstatic.com/firebasejs/3.7.8/firebase.js', ['position' => View::POS_HEAD]);
 $firebaseConfig = json_encode(Yii::$app->params['firebase.web.config']);
-$credential = Yii::$app->params['firebase.credential'];
 $time = time();
 
-$clientId = 'client_' . Yii::$app->profile->id;
-$claims = [
+$clientId = 'user_' . Yii::$app->user->id;
+$token = Yii::$app->firebase->customToken([
     'uid' => $clientId,
-    'iss' => $credential['client_email'],
-    'sub' => $credential['client_email'],
-    "aud" => "https://identitytoolkit.googleapis.com/google.identity.identitytoolkit.v1.IdentityToolkit",
-    'iat' => $time,
-    'exp' => $time + 3600,
-];
-$token = Firebase\JWT\JWT::encode($claims, $credential['private_key'], 'RS256');
+]);
 $clientId = json_encode($clientId);
 $js = <<<JS
     firebase.initializeApp($firebaseConfig);
@@ -56,15 +54,6 @@ Module::widget([
 ?>
 <div ng-app="myApp">
     <div class="row" ng-controller="ChatController">
-        <div class="col-lg-4 col-lg-offset-8">
-            <div class="input-group">
-                <input type="text" placeholder="Type Name ..." class="form-control" ng-model="user.val.name">
-                <span class="input-group-btn">
-                    <button type="button" class="btn btn-primary btn-flat" ng-click="setUserName()">Set Name</button>
-                </span>
-            </div>
-        </div>
-
         <div class="col-lg-12">
             <div class="box box-primary direct-chat direct-chat-primary">
                 <div class="box-header with-border">
@@ -77,9 +66,7 @@ Module::widget([
                 </div>
                 <div class="box-footer">
                     <div class="form-group">
-                        <textarea type="text" placeholder="{{user.val.name==undefined ? 'Isi nama dulu' : 'Type Message ...'}}"
-                                  class="form-control" ng-model="inpChat"
-                                  ng-keypress="send($event)" ng-disabled="user.val.name == undefined"></textarea>
+                        <textarea type="text" class="form-control" ng-model="inpChat"ng-keypress="send($event)"></textarea>
                     </div>
                 </div>
             </div>

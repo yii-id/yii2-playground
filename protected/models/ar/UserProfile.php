@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $fullname
  * @property integer $photo_id
+ * @property string $avatar
+ * @property string $avatarUrl
  *
  * @property User $user
  */
@@ -32,7 +34,7 @@ class UserProfile extends \yii\db\ActiveRecord
         return [
             [['fullname'], 'required'],
             [['photo_id'], 'integer'],
-            [['fullname'], 'string', 'max' => 255],
+            [['fullname', 'avatar'], 'string', 'max' => 255],
             [['file'], 'file'],
             [['id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id']],
         ];
@@ -56,6 +58,14 @@ class UserProfile extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'id']);
+    }
+
+    public function getAvatarUrl()
+    {
+        if ($this->photo_id) {
+            return \yii\helpers\Url::to(['/file','id'=> $this->photo_id], true);
+        }
+        return $this->avatar;
     }
 
     public function behaviors()

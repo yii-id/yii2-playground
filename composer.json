@@ -39,7 +39,8 @@
         "scrivo/highlight.php": "~8.0",
         "pusher/pusher-php-server": "^2.2",
         "firebase/php-jwt": "~2.0|~3.0|~4.0",
-        "deesoft/yii2-angularjs": "~1.0"
+        "deesoft/yii2-angularjs": "~1.0",
+        "google/auth": "^0.11.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0",

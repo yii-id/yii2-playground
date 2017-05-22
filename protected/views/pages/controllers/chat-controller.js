@@ -23,12 +23,6 @@ function ($scope, getUser, fApplyScope, $filter) {
         }
     }
     
-    $scope.setUserName = function () {
-        firebase.database().ref('users/'+webClientId).update({
-            name:$scope.user.val.name,
-        });
-    }
-    
     $scope.getUser = function (uid) {
         return getUser(uid);
     }
