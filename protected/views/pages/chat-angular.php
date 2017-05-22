@@ -2,6 +2,7 @@
 
 use yii\web\View;
 use dee\angularjs\Module;
+
 //use yii\helpers\Html;
 
 /* @var $this View */
@@ -28,58 +29,60 @@ $js = <<<JS
 JS;
 $this->registerJs($js, View::POS_HEAD);
 list(, $mainUrl) = Yii::$app->getAssetManager()->publish('@app/assets/main');
-Module::$moduleAssets['relativeDate'] = $mainUrl . '/js/angular-relative-date.js'
+Yii::setAlias('@mainUrl', $mainUrl);
+Module::$moduleAssets['relativeDate'] = $mainUrl . '/js/angular-relative-date.js';
+Module::$moduleAssets['ngSanitize'] = '//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-sanitize.js';
+?>
+<?php
+Module::widget([
+    'name' => 'myApp',
+    'preJsFile' => 'js/chat-pre.js',
+    'depends' => ['relativeDate', 'ngSanitize'],
+    'controllers' => [
+        'ChatController' => [
+            'sourceFile' => 'controllers/chat-controller.js'
+        ]
+    ],
+    'components' => [
+        'chatMessage' => [
+            'templateFile' => 'templates/chat-message.php',
+            'bindings' => [
+                'message' => '<',
+                'user' => '<',
+            ]
+        ]
+    ],
+])
 ?>
 <div ng-app="myApp">
-    <?php
-    Module::begin([
-        'name' => 'myApp',
-        'options' => ['ng-controller' => 'ChatController', 'class' => 'row'],
-        'preJsFile' => 'js/chat-pre.js',
-        'depends' => ['relativeDate'],
-        'controllers' => [
-            'ChatController' => [
-                'sourceFile' => 'controllers/chat-controller.js'
-            ]
-        ],
-        'components' => [
-            'chatMessage' => [
-                'template' => $this->render('templates/chat-message.php', ['mainUrl' => $mainUrl]),
-                'bindings' => [
-                    'message' => '<',
-                    'user' => '<',
-                ]
-            ]
-        ],
-    ])
-    ?>
-    <div class="col-lg-4 col-lg-offset-8">
-        <div class="input-group">
-            <input type="text" placeholder="Type Name ..." class="form-control" ng-model="user.val.name">
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-primary btn-flat" ng-click="setUserName()">Set Name</button>
-            </span>
+    <div class="row" ng-controller="ChatController">
+        <div class="col-lg-4 col-lg-offset-8">
+            <div class="input-group">
+                <input type="text" placeholder="Type Name ..." class="form-control" ng-model="user.val.name">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary btn-flat" ng-click="setUserName()">Set Name</button>
+                </span>
+            </div>
         </div>
-    </div>
 
-    <div class="col-lg-12">
-        <div class="box box-primary direct-chat direct-chat-primary">
-            <div class="box-header with-border">
-                <h3 class="box-title">Simple Chat</h3>
-            </div>
-            <div class="box-body">
-                <div class="direct-chat-messages">
-                    <chat-message ng-repeat="message in messages| orderBy:'time'" message="message" user="getUser(message.uid)"></chat-message>
+        <div class="col-lg-12">
+            <div class="box box-primary direct-chat direct-chat-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Simple Chat</h3>
                 </div>
-            </div>
-            <div class="box-footer">
-                <div class="form-group">
-                    <textarea type="text" placeholder="{{user.val.name==undefined ? 'Isi nama dulu' : 'Type Message ...'}}"
-                              class="form-control" ng-model="inpChat"
-                              ng-keypress="send($event)" ng-disabled="user.val.name == undefined"></textarea>
+                <div class="box-body">
+                    <div class="direct-chat-messages">
+                        <chat-message ng-repeat="message in messages| orderBy:'time'" message="message" user="getUser(message.uid)"></chat-message>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="form-group">
+                        <textarea type="text" placeholder="{{user.val.name==undefined ? 'Isi nama dulu' : 'Type Message ...'}}"
+                                  class="form-control" ng-model="inpChat"
+                                  ng-keypress="send($event)" ng-disabled="user.val.name == undefined"></textarea>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-<?php Module::end(); ?>
 </div>

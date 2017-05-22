@@ -1,7 +1,7 @@
 myApp.filter('nl2br', ['$sce', function ($sce) {
-        return function (msg) {
+        return function (msg, safe) {
             var result = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
-            return $sce.trustAsHtml(result);
+            return safe ? $sce.trustAsHtml(result) : result;
         }
     }]);
 
