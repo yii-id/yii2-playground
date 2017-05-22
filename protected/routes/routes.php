@@ -70,6 +70,10 @@ return[
             'url' => ['site/page', 'view' => 'chat-angular'],
             'source' => '@app/routes/angular-chat.md'
         ],
+        'Route Basic' => [
+            'url' => ['site/page', 'view' => 'angular-route-basic'],
+            'source' => '@app/routes/angular-route-basic.md'
+        ]
 //        'Route' => [
 //            'url' => ['site/page', 'view' => 'basic-angular'],
 //        ],
