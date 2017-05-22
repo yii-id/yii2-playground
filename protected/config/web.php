@@ -44,12 +44,40 @@ return [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'rules' => [
-                'pages/<view:[\w\/-]+>' => 'site/page',
                 ['class' => 'yii\rest\UrlRule',
                     'controller' => [
                         'api/product' => 'product-rest',
                     ]
                 ],
+                [
+                    'pattern' => 'posts',
+                    'route' => 'site/page',
+                    'defaults' => [
+                        'view' => 'angular-route'
+                    ]
+                ],
+                [
+                    'pattern' => 'posts/<_x:.*>',
+                    'route' => 'site/page',
+                    'defaults' => [
+                        'view' => 'angular-route'
+                    ]
+                ],
+                [
+                    'pattern' => 'angular-route-basic',
+                    'route' => 'site/page',
+                    'defaults' => [
+                        'view' => 'angular-route-basic'
+                    ]
+                ],
+                [
+                    'pattern' => 'angular-route-basic/<_x:.*>',
+                    'route' => 'site/page',
+                    'defaults' => [
+                        'view' => 'angular-route-basic'
+                    ]
+                ],
+                'pages/<view:[\w\/-]+>' => 'site/page',
             ],
         ],
         'errorHandler' => [
@@ -61,30 +89,6 @@ return [
         'session' => [
             'class' => 'yii\web\DbSession'
         ],
-        'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
-            'clients' => [
-                'google' => [
-                    'class' => 'yii\authclient\clients\Google',
-                    'normalizeUserAttributeMap' => [
-                        'email' => ['emails', 0, 'value'],
-                        'name' => 'displayName',
-                        'avatar' => ['image', 'url'],
-                    ]
-                ],
-                'facebook' => [
-                    'class' => 'yii\authclient\clients\Facebook',
-                    'normalizeUserAttributeMap' => [
-                        'avatar' => function ($attributes){
-                            return "https://graph.facebook.com/v2.6/{$attributes['id']}/picture?type=normal";
-                        },
-                    ]
-                ],
-                'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
-                ],
-            ],
-        ]
     ],
     'as statistic' => [
         'class' => 'app\classes\PageStatistic',
